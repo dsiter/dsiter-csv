@@ -6,6 +6,7 @@ repositories {
 
 dependencies {
 	testCompile 'junit:junit:4.+'
+	compile project(":dsiter")
 	compile "org.apache.commons:commons-csv:1.4"
 }
 
