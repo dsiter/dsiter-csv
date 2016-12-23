@@ -67,7 +67,7 @@ public class CsvDataset implements IDataset {
 		}
 
 		@Override
-		public Row getCurrentRow() {
+		public Row getCurrentRow() throws Exception {
 			if (record.size() != cds.length) {
 				throw new IllegalArgumentException(
 					"CSV row was wrong size: expected " + cds.length + ", was " + record.size()
