@@ -1,0 +1,26 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	testCompile 'junit:junit:4.+'
+	compile project(":dsiter")
+	compile "org.apache.commons:commons-csv:1.4"
+}
+
+sourceCompatibility = 1.8
+
+task wrapper(type: Wrapper) { gradleVersion = '2.12' }
+
+test {
+	testLogging {
+		afterSuite { desc, result ->
+			if (!desc.parent) { // will match the outermost suite
+				println "\nResults: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+			}
+		}
+	}
+}
+
