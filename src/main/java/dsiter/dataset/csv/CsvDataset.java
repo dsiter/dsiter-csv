@@ -2,6 +2,7 @@ package dsiter.dataset.csv;
 
 import dsiter.dataset.IDataset;
 import dsiter.iterator.IDatasetIterator;
+import dsiter.pipe.IPipe;
 import dsiter.reader.IReaderFactory;
 import dsiter.row.*;
 import org.apache.commons.csv.CSVFormat;
@@ -91,5 +92,18 @@ public class CsvDataset implements IDataset {
 		public ColumnDescriptor[] getColumnDescriptors() {
 			return cds;
 		}
+    
+    @Override
+    public boolean tryAbsorb(IPipe pipe) {
+      // TODO(bkputnam) Add optimizations here?
+      return false;
+    }
+    
+    @Override
+    public void close() throws Exception {
+      if (this.src instanceof AutoCloseable) {
+        ((AutoCloseable) this.src).close();
+      }
+    }
 	}
 }
